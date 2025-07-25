@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Braydon's Private Chat</title>
+    <!-- Import Google Font and Font Awesome for icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-dNkYQ2lfmoMy2P1AJ2Kax2ECGvqntQEoDJDeJPQyKJ+rqJKxf2ljdg8zIidXyAaKBP9e3uou+22K5Pew3X3vQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="style_improved.css" />
+    <!-- Responsive overrides for mobile -->
+    <style>
+      /* Brand tagline styling */
+      .logo-tagline {
+        font-size: 0.8rem;
+        color: var(--color-muted);
+        margin-left: 0.5rem;
+      }
+      @media (max-width: 768px) {
+        .chat-screen {
+          height: 100vh;
+          max-width: 100%;
+          border-radius: 0;
+        }
+        .chat-body {
+          flex-direction: column;
+        }
+        .users-panel {
+          display: none;
+        }
+        .messages {
+          padding: 1rem;
+        }
+        .messages li {
+          max-width: 100%;
+        }
+        .message-form {
+          padding: 0.5rem;
+        }
+      }
+      @media (max-width: 480px) {
+        .join-card {
+          padding: 1.5rem;
+        }
+        .app-title {
+          font-size: 1.5rem;
+        }
+        .subtitle {
+          font-size: 0.9rem;
+        }
+        .send-btn {
+          width: 2.5rem;
+          height: 2.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" class="app">
+      <!-- Join screen (displayed until the user enters their name) -->
+      <div id="join-screen" class="join-screen">
+        <!-- Central card for the join screen -->
+        <div class="join-card">
+          <h1 class="app-title">Welcome to Braydon's Private Chat</h1>
+          <p class="subtitle">Enter your name to join the conversation</p>
+          <input
+            type="text"
+            id="username-input"
+            placeholder="Your name"
+            maxlength="25"
+          />
+          <button id="join-button" class="btn primary-btn">Join Chat</button>
+        </div>
+      </div>
+
+      <!-- Chat screen (hidden until user joins) -->
+      <div id="chat-screen" class="chat-screen hidden">
+        <header class="chat-header">
+          <div style="display:flex;align-items:center;">
+            <h2>Braydon's Private Chat</h2>
+            <span class="logo-tagline">Secure messaging</span>
+          </div>
+        </header>
+        <div class="chat-body">
+          <!-- Sidebar showing connected users -->
+          <aside id="users-panel" class="users-panel">
+            <h3>Online</h3>
+            <ul id="users-list" class="users-list"></ul>
+          </aside>
+          <!-- Messages list -->
+          <ul id="messages" class="messages"></ul>
+        </div>
+        <form id="message-form" class="message-form">
+          <input
+            id="message-input"
+            autocomplete="off"
+            placeholder="Type a message..."
+            maxlength="500"
+          />
+          <button id="send-button" class="send-btn" type="submit" aria-label="Send Message">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Socket.io library -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
