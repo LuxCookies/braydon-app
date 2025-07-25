@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Braydon's App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app" class="app">
+      <!-- Join screen (displayed until the user enters their name) -->
+      <div id="join-screen" class="join-screen">
+        <h1>Welcome to Braydon's App</h1>
+        <p class="subtitle">Enter your name to join the chat</p>
+        <input
+          type="text"
+          id="username-input"
+          placeholder="Your name"
+          maxlength="25"
+        />
+        <button id="join-button" class="btn">Join Chat</button>
+      </div>
+
+      <!-- Chat screen (hidden until user joins) -->
+      <div id="chat-screen" class="chat-screen hidden">
+        <header class="chat-header">
+          <h2>Braydon's App</h2>
+        </header>
+        <div class="chat-body">
+          <!-- Sidebar showing connected users -->
+          <aside id="users-panel" class="users-panel">
+            <h3>Online</h3>
+            <ul id="users-list" class="users-list"></ul>
+          </aside>
+          <!-- Messages list -->
+          <ul id="messages" class="messages"></ul>
+        </div>
+        <form id="message-form" class="message-form">
+          <input
+            id="message-input"
+            autocomplete="off"
+            placeholder="Type a message..."
+            maxlength="500"
+          />
+          <button class="btn" type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Socket.io library -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
